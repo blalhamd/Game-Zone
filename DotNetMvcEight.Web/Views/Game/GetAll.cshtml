@@ -1,0 +1,25 @@
+﻿@model List<GameViewModel>
+
+@{
+	ViewData["Title"] = "Games";
+}
+
+<div class="row mt-5">
+	@foreach (var game in Model)
+	{
+		<div class="col-lg-4 col-md-6 col-sm-12">
+			<a asp-action="GetById" asp-controller="Game" asp-route-id="@game.Id" class="card border-primary mb-3 rounded-3 overflow-hidden" style="max-width: 20rem; height:480px; text-decoration:none;">
+				<img src="~/Images/@game.ImagePath" class="card-img-top" alt="Game Photo" style="height: 250px">
+				<div class="card-body" style="text-align:center;">
+					<h4 class="card-title">@game.Name</h4>
+					<p class="card-text" style="max-height: 125px; overflow: hidden; text-overflow: ellipsis;">@game.Description</p>
+					<p class="card-text mt-2" style="position: absolute;bottom: 20px; display: contents;"><span class="badge bg-primary fs-6">@game.category.Name</span></p>
+				</div>
+			</a>
+		</div>
+	}
+</div>
+
+<div class="container">
+	<a asp-action="AddForm" asp-controller="Game" class="btn btn-outline-success btn-lg"><i class="bi bi-plus-circle"></i> Add New Game </a>
+</div>

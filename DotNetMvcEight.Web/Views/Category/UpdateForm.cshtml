@@ -1,0 +1,28 @@
+﻿@model CategoryViewModel
+@{
+	ViewData["Title"] = "Update Category";
+
+	SelectList categories = new SelectList(ViewBag.categories, "Id", "Name",Model.Id);
+}
+
+<h2 class="mb-4">Update Category</h2>
+
+<form method="post" asp-action="UpdateCategory" asp-controller="Category" asp-route-id="@Model.Id" class="form-control" style="height: auto;display: flex;flex-direction: column;gap: 20px;margin-bottom: 20px;">
+	<div class="form-group col-md-6">
+		<label asp-for="Name"></label>
+		<select asp-items="categories" class="form-control" style="background-color:white !important; font-weight: bold; color: black;">
+		</select>
+		<span asp-validation-for="Name" class="text-danger"></span>
+	</div>
+
+    <button type="submit" class="btn btn-outline-success" style="width:fit-content"> Save </button>
+</form>
+
+<div class="container">
+	<a asp-action="GetAll" asp-controller="Category" class="btn btn-outline-success btn-lg"><i class="bi bi-arrow-left-circle"></i> Back To List</a>
+</div>
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>

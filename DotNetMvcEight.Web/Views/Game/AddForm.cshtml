@@ -1,0 +1,59 @@
+﻿@model AddGameViewModel
+
+@{
+    ViewData["Title"] = "Add Game";
+    SelectList categories = new SelectList(ViewBag.Categories, "Id", "Name");
+}
+
+<h2 class="mb-4"> Add New Game</h2>
+
+<form method="post" asp-action="AddGame" asp-controller="Game" enctype="multipart/form-data" class="form-control" style="height: fit-content;display: flex;flex-direction: column;gap: 20px;margin-bottom: 20px;">
+   
+    <div class="form-group col-md-6">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" style="background-color:white !important; color:black; font-weight:bold;">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group col-md-6">
+        <label asp-for="Description"></label>
+        <textArea asp-for="Description" class="form-control" style="background-color:white !important; color:black; font-weight:bold;"></textArea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="form-group col-md-6">
+        <label asp-for="CategoryId"></label> <!--For remove search => data-minimum-results-for-search="Infinity"-->
+        <select asp-items="categories" asp-for="CategoryId"  data-minimum-results-for-search="Infinity" 
+        class="form-control col-md-6" style="background-color:white !important; font-weight: bold; color: black;">
+            <option value="0">-- Select Category --</option>
+        </select>
+        <span asp-validation-for="CategoryId" class="text-danger"></span>
+    </div>
+@*     <div class="form-group col-md-6">
+        <label asp-for="Devices"></label>
+        <select asp-items="Model.Devices" asp-for="Devices" class="form-select col-md-6" style="background-color:white !important; font-weight: bold; color: black;">
+            <option value="0">-- Select Device --</option>
+        </select>
+        <span asp-validation-for="Devices" class="text-danger"></span>
+    </div> *@
+    <div class="form-group col-md-6">
+        <label asp-for="Image"></label>
+        <input asp-for="Image" type="file" class="form-control col-md-6" style="background-color:white !important; color:black; font-weight:bold;"
+               data-rule-extension="jpg,png,jpeg" data-msg-extension="Not allow File with Extension,only jpg,png,jpeg."
+               data-rule-fileSize="1048576" data-msg-fileSize="Size of file is larger than 1Mb.">
+        <span asp-validation-for="Image" class="text-danger"></span>
+    </div>
+   
+    <button type="submit" class="btn btn-outline-success" style="width:fit-content">Save</button>
+</form>
+
+<div class="container">
+    <a asp-action="GetAll" asp-controller="Game" class="btn btn-outline-success btn-lg"><i class="bi bi-arrow-left-circle"></i> Back To List</a>
+</div>
+
+<script src="~/lib/jquery/jquery.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation/dist/additional-methods.min.js"></script> <!--For Client-Side Validation that belong Custom Validation-->
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+<!--For add Custom Validation for Size of Image.-->
+
+<script src="~/js/FileSize.js" asp-append-version="true"></script>

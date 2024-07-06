@@ -1,0 +1,29 @@
+﻿@model AddDeviceViewModel
+
+@{
+    ViewData["Title"] = "Add Device";
+}
+
+<h2 class="mb-4">Add New Device</h2>
+<form method="post" asp-action="AddDevice" asp-controller="Device" class="form-control" style="height: auto;display: flex;flex-direction: column;gap: 20px;margin-bottom: 20px;">
+    <div class="form-group col-md-6">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" style="background-color:white !important; color:black; font-weight:bold;">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group col-md-6">
+        <label asp-for="Icon"></label>
+        <input asp-for="Icon" class="form-control" style="background-color:white !important; color:black; font-weight:bold;">
+        <span asp-validation-for="Icon" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-outline-success" style="width:fit-content; margin-bottom:10px"> Save </button>
+</form>
+
+<div class="container">
+    <a asp-action="GetAll" asp-controller="Device" class="btn btn-outline-success btn-lg"><i class="bi bi-arrow-left-circle"></i> Back To List</a>
+</div>
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>

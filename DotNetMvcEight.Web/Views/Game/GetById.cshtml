@@ -1,0 +1,27 @@
+﻿@model GameViewModel
+
+@{
+	ViewData["Title"] = "Game";
+}
+
+<div class="card border-success mt-5 rounded-4 overflow-hidden">
+	<div class="card-body p-0">
+		<div class="row">
+			    <div class="col-md-8" style="padding: 30px;">
+					<h5 class="card-title">@Model.Name</h5>
+					<p class="card-text">@Model.Description</p>
+			     	<p class="card-text">
+				     	<span class="badge bg-secondary fs-6">@Model.category.Name</span>
+				    </p>
+				</div>
+				<div class="col-md-4">
+					<img src="~/Images/@Model.ImagePath" class="card-img-top" alt="Game Photo" style="height:inherit">
+				</div>
+			</div>
+	</div>
+</div>
+
+<div class="container mt-3">
+	<a asp-action="GetAll" asp-controller="Game" class="btn btn-outline-success btn-lg"><i class="bi bi-arrow-left-circle"></i> Back To List </a>
+</div>
+

@@ -1,0 +1,47 @@
+﻿@model GameViewModel
+
+@{
+    ViewData["Title"] = "Update";
+    SelectList categories = new SelectList(ViewBag.Categories, "Id", "Name",Model.CategoryId);
+}
+
+<h2 class="mb-4">Update Game</h2>
+
+<form asp-action="UpdateGame" asp-controller="Game" asp-route-id="@Model.Id" method="post" enctype="multipart/form-data" class="form-control" style="height: fit-content;display: flex;flex-direction: column;gap: 20px;margin-bottom: 20px;">
+    <div class="form-group col-md-6">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" style="background-color:white !important; color:black; font-weight:bold;" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group col-md-6">
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description" class="form-control" style="background-color:white !important; color:black; font-weight:bold;">
+            </textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="form-group col-md-6">
+        <label>Image</label>
+        <input name="Image" type="file" required class="form-control" style="background-color:white !important; color:black; font-weight:bold;">
+    </div>
+    <div class="form-group col-md-6">
+        <input asp-for="ImagePath" required class="form-control" style="display:none;">
+    </div>
+    <div class="form-group col-md-6">
+        <label asp-for="CategoryId"></label>
+        <select asp-items="categories" asp-for="CategoryId" data-minimum-results-for-search="Infinity" class="form-control col-md-6" style="background-color:white !important; font-weight: bold; color: black;">
+            <option value="0">-- Select Category --</option>
+        </select>
+        <span asp-validation-for="CategoryId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-outline-success" style="width:fit-content">Save</button>
+</form>
+
+<div class="container">
+    <a asp-action="GetAll" asp-controller="Game" class="btn btn-outline-success btn-lg"><i class="bi bi-arrow-left-circle"></i> Back To List</a>
+</div>
+
+<script src="~/lib/jquery/jquery.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation/dist/additional-methods.min.js"></script> <!--For Client-Side Validation that belong Custom Validation-->
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>

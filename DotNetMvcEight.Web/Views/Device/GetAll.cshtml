@@ -1,0 +1,39 @@
+﻿@model List<DeviceViewModel>
+
+@{
+	ViewData["Title"] = "Devices";
+}
+
+<table class="table table-responsive table-hover table-dark">
+	<thead>
+		<tr>
+			<th></th>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Icon</th>
+			<th>Details</th>
+			<th>Update</th>
+			<th>Delete</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var device in Model)
+		{
+			<tr>
+				<td></td>
+				<td>@device.Id</td>
+				<td>@device.Name</td>
+				<td>@device.Icon</td>
+				<td><a asp-action="GetById" asp-controller="Device" asp-route-id="@device.Id" class="btn btn-success"><i class="bi bi-info-circle"></i> Details</a></td>
+				<td><a asp-action="UpdateForm" asp-controller="Device" asp-route-id="@device.Id" class="btn btn-success" style="background-color:darkslateblue"><i class="bi bi-pencil-square"></i> Update</a></td>
+				<td><a asp-action="Delete" asp-controller="Device" asp-route-id="@device.Id" class="btn btn-success" style="background-color:darkred"><i class="bi bi-trash3-fill"></i>  Delete</a></td>
+				<td></td>
+			</tr>
+		}
+	</tbody>
+</table>
+
+<div class="container">
+	<a asp-action="AddForm" asp-controller="Device" class="btn btn-outline-success btn-lg"><i class="bi bi-plus-circle"></i> Add New Device</a>
+</div>
